@@ -59,3 +59,15 @@ Example:
     String fileContent = "Hello Learner !! Welcome to java.";
     Path path = Paths.get("c:/temp/samplefile7.txt");
     Files.write(path, fileContent.getBytes());
+    
+Get exact file size after reading file 
+======================================
+ecimalFormat df3 = new DecimalFormat("#.###");
+File file = new File('path');
+if(file.exist()) {
+  double bytes = file.length();
+  fileSize = bytes / 1024;
+  
+  String getFileSize = df3.format(fileSize) + " KB";
+  System.out.println(getFileSize); // like -> 4.56 KB
+}
