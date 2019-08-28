@@ -1,0 +1,51 @@
+Write File using BufferedWritter
+======================================
+FileWriter the most clean way to write files. Syntax is self explanatory and easy to read and understand. 
+FileWriter writes directly into file (less performance) and should be used only when number of writes are less.
+
+Example :
+  String fileContent = "Hello Learner !! Welcome to java.";
+  FileWriter fileWriter = new FileWriter("c:/temp/samplefile2.txt");
+  fileWriter.write(fileContent);
+  fileWriter.close();
+
+Write File using FileOutputStream
+======================================
+Use FileOutputStream to write binary data to a file. FileOutputStream is meant for writing streams of raw bytes such as image data.
+
+Example:
+  String fileContent = "Hello Learner !! Welcome to java.";
+  FileOutputStream outputStream = new FileOutputStream("c:/temp/samplefile4.txt");
+  byte[] strToBytes = fileContent.getBytes();
+  outputStream.write(strToBytes);
+  outputStream.close();
+  
+Write File using DataOutputStream
+======================================
+DataOutputStream lets an application write primitive Java data types to an output stream in a portable way. 
+An application can then use a data input stream to read the data back in.
+
+Example:
+  String fileContent = "Hello Learner !! Welcome to java.";
+  FileOutputStream outputStream = new FileOutputStream("c:/temp/samplefile5.txt");
+  DataOutputStream dataOutStream = new DataOutputStream(new BufferedOutputStream(outputStream));
+  dataOutStream.writeUTF(fileContent);
+  dataOutStream.close();
+  
+Write File using FileChannel
+======================================
+FileChannel can be used for reading, writing, mapping, and manipulating a file. 
+If you are dealing with large files, FileChannel can be faster than standard IO.
+File channels are safe for use by multiple concurrent threads.
+
+Example:
+  String fileContent = "Hello Learner !! Welcome to java.";
+  RandomAccessFile stream = new RandomAccessFile("c:/temp/samplefile6.txt", "rw");
+    FileChannel channel = stream.getChannel();
+    byte[] strBytes = fileContent.getBytes();
+    ByteBuffer buffer = ByteBuffer.allocate(strBytes.length);
+    buffer.put(strBytes);
+    buffer.flip();
+    channel.write(buffer);
+    stream.close();
+    channel.close();
